@@ -35,7 +35,7 @@ def FindLargestPrimeFactor(number):
 import time
 
 start = time.time()
-print("Biggest prime factor = ", FindLargestPrimeFactor(1000000))
+print("Biggest prime factor = ", FindLargestPrimeFactor(600851475143))
 end = time.time()
 print("Found in (seconds) = ", end - start)
 

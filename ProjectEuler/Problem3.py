@@ -1,12 +1,14 @@
 def findListOfPrimeNumbers(maxValue):
     listOfPrimeNumbers = [2, 3]
 
-    valueToCheck = listOfPrimeNumbers[-1] + 2
-    prime = True
+    valueToCheck = listOfPrimeNumbers[-1]
+    isPrime = True
 
     while not valueToCheck > maxValue:
 
+        valueToCheck += 2
         isPrime = True
+
         for prime in listOfPrimeNumbers:
             if valueToCheck % prime == 0:
                 isPrime = False
@@ -15,27 +17,26 @@ def findListOfPrimeNumbers(maxValue):
         if isPrime:
             listOfPrimeNumbers.append(valueToCheck)
 
-        valueToCheck += 2
-
     return listOfPrimeNumbers
 
 def FindLargestPrimeFactor(number):
 
-    halfNumber = number / 2
+    divider = int(number / 2)
 
-    if number % 2 != 0:
-        halfNumber = (number + 1) / 2
+    for i in range(2, int(number / 2), 1):
+        if (number % i == 0) and ((number / i) % 2 != 0):
+            divider = number / i
+            break
 
-    listOfPrimeNumbers = findListOfPrimeNumbers (halfNumber)
+    listOfPrimeNumbers = findListOfPrimeNumbers(divider)
 
     for prime in reversed(listOfPrimeNumbers):
-        if 600851475143 % prime == 0:
+        if number % prime == 0:
             return prime
 
 import time
 
 start = time.time()
-print("Biggest prime factor = ", FindLargestPrimeFactor(600851475143))
+print("Largest prime factor = ", FindLargestPrimeFactor(600851475143))
 end = time.time()
 print("Found in (seconds) = ", end - start)
-
